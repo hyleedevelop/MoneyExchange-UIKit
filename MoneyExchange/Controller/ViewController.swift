@@ -9,12 +9,22 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var currencyDate: UITextField!
+    @IBOutlet weak var currency1Type: UITextField!
+    @IBOutlet weak var currency2Type: UITextField!
     @IBOutlet weak var currency1Price: UITextField!
     @IBOutlet weak var currency2Price: UITextField!
-    @IBOutlet weak var currency1Button: UIButton!
-    @IBOutlet weak var currency2Button: UIButton!
-    @IBOutlet weak var currency1Picker: UIPickerView!
-    @IBOutlet weak var currency2Picker: UIPickerView!
+    
+    let currencyDatePicker: UIDatePicker! = UIDatePicker()
+    let currency1Picker: UIPickerView! = UIPickerView()
+    let currency2Picker: UIPickerView! = UIPickerView()
+    let toolbar: UIToolbar! = UIToolbar()
+    let toolbarCloseButton = UIBarButtonItem(
+        barButtonSystemItem: .close, target: nil, action: #selector(pickerClose))
+    let toolbarDoneButton = UIBarButtonItem(
+        barButtonSystemItem: .done, target: nil, action: #selector(pickerDone))
+    let toolbarFlexibleSpace = UIBarButtonItem(
+        barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     
     var exchangeManager = ExchangeManager()
     
@@ -26,40 +36,51 @@ class ViewController: UIViewController {
         currency1Picker.dataSource = self
         currency2Picker.dataSource = self
         
-        currency1Picker.isHidden = true
-        currency2Picker.isHidden = true
+        currencyDate.inputView = currencyDatePicker
+        currency1Type.inputView = currency1Picker
+        currency2Type.inputView = currency2Picker
+     
+        toolbar.sizeToFit()
+        toolbar.frame = CGRect(x: 0, y: 0, width: 0, height: 40)
+        toolbar.setItems([toolbarCloseButton, toolbarFlexibleSpace, toolbarDoneButton], animated: true)
         
-        currency1Picker.selectRow(23, inComponent: 0, animated: true)
-        currency2Picker.selectRow(14, inComponent: 0, animated: true)
+        currencyDate.inputAccessoryView = toolbar
+        currencyDatePicker.datePickerMode = .date
+        currencyDatePicker.preferredDatePickerStyle = .wheels
+        currencyDatePicker.addTarget(self, action: #selector(datePickerDone(_:)), for: .valueChanged)
         
-        currency1Button.titleLabel?.text = exchangeManager.currencyArray[23]
-        currency2Button.titleLabel?.text = exchangeManager.currencyArray[14]
-        
-    }
+        currency1Type.inputAccessoryView = toolbar
+        currency2Type.inputAccessoryView = toolbar
 
-    @IBAction func currency1ButtonPressed(_ sender: UIButton) {
-        currency1Price.endEditing(true)
-        currency2Price.endEditing(true)
-        currency1Picker.isHidden = false
-        currency2Picker.isHidden = true
-        currency1Button.titleLabel?.text = sender.currentTitle
-        currency2Button.titleLabel?.text = sender.currentTitle
+        // default: 1번은 달러, 2번은 원
+        currency1Picker.selectRow(22, inComponent: 0, animated: true)
+        currency2Picker.selectRow(13, inComponent: 0, animated: true)
     }
     
-    @IBAction func currency2ButtonPressed(_ sender: UIButton) {
-        currency1Price.endEditing(true)
-        currency2Price.endEditing(true)
+    @objc func pickerClose() {
+        self.view.endEditing(true)
+    }
+    
+    @objc func pickerDone() {
+        
+        self.view.endEditing(true)
+    }
+    
+    @objc func datePickerDone(_ sender: UIDatePicker) {
+        let nowDate = sender.date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        let dateString = dateFormatter.string(from: nowDate)
+        currencyDate.text = dateString
+//        self.view.endEditing(true)
+    }
+    
+    @IBAction func currency1PricePressed(_ sender: UITextField) {
         currency1Picker.isHidden = true
-        currency2Picker.isHidden = false
-    }
-    
-    
-    @IBAction func currency1TextFieldPressed(_ sender: UITextField) {
-        currency1Picker.isHidden = true
         currency2Picker.isHidden = true
     }
     
-    @IBAction func currency2TextFieldPressed(_ sender: UITextField) {
+    @IBAction func currency2PricePressed(_ sender: UITextField) {
         currency1Picker.isHidden = true
         currency2Picker.isHidden = true
     }
@@ -83,7 +104,7 @@ extension ViewController: UITextFieldDelegate {
         } else {  // 아무것도 입력하지 않았다면
             currency1Price.placeholder = "여기에 금액을 입력해주세요"
             currency1Price.layer.borderColor = UIColor.red.cgColor
-            currency1Picker.isHidden = true
+//            currency1Picker.isHidden = true
             return false
         }
     }
@@ -119,11 +140,9 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         let selectedCurrency = exchangeManager.currencyArray[row]
         
         if pickerView == currency1Picker {
-            currency1Button.titleLabel?.text = selectedCurrency
-            
+            currency1Type.text = selectedCurrency
         } else if pickerView == currency2Picker {
-            currency2Button.titleLabel?.text = selectedCurrency
-            
+            currency2Type.text = selectedCurrency
         }
 
     }

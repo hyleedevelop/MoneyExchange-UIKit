@@ -16,122 +16,108 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="실시간 환율 계산기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5Z-5l-qQk">
-                                <rect key="frame" x="67.5" y="78" width="279" height="45.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="환율 조회" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5Z-5l-qQk" userLabel="Title">
+                                <rect key="frame" x="137.5" y="78" width="139.5" height="45.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="38"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wjP-3z-go5">
-                                <rect key="frame" x="82" y="193.5" width="250" height="300"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="hI2-b3-7fO">
+                                <rect key="frame" x="67" y="193.5" width="280" height="50"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="jLZ-6M-XlD">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="90"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기준일: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mhs-z7-aMI">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="날짜 선택" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8RP-MO-OdF" userLabel="Date">
+                                        <rect key="frame" x="80" y="0.0" width="200" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="62a-b0-fsm"/>
+                                            <constraint firstAttribute="height" constant="50" id="f1q-dH-RKf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="BUV-bP-6Fw"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wjP-3z-go5">
+                                <rect key="frame" x="82" y="293.5" width="250" height="280"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="jLZ-6M-XlD">
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="80"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" role="primary" translatesAutoresizingMaskIntoConstraints="NO" id="Cf5-UL-bO1">
-                                                <rect key="frame" x="0.0" y="0.0" width="250" height="45"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="45" id="SVx-PM-ja4"/>
-                                                </constraints>
-                                                <color key="tintColor" systemColor="systemRedColor"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="통화1 선택">
-                                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                    <color key="baseBackgroundColor" systemColor="systemRedColor"/>
-                                                </buttonConfiguration>
-                                                <connections>
-                                                    <action selector="currency1ButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vJ4-78-ahS"/>
-                                                </connections>
-                                            </button>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="금액 입력" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iWd-xe-bYG">
-                                                <rect key="frame" x="0.0" y="45" width="250" height="45"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="45" id="Pos-3R-6Gt"/>
-                                                </constraints>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="통화 종류 선택" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mOu-S3-y5j" userLabel="Currency1 Type">
+                                                <rect key="frame" x="0.0" y="0.0" width="250" height="40"/>
+                                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="금액 입력" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iWd-xe-bYG" userLabel="Currency1 Price">
+                                                <rect key="frame" x="0.0" y="40" width="250" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                                                 <connections>
-                                                    <action selector="currency1TextFieldPressed:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="P53-B8-Xfi"/>
+                                                    <action selector="currency1PricePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bMc-Jy-hyf"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⇵" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jj6-Gb-L68">
-                                        <rect key="frame" x="0.0" y="110" width="250" height="80"/>
+                                        <rect key="frame" x="0.0" y="100" width="250" height="80"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Kbb-mO-ybW">
-                                        <rect key="frame" x="0.0" y="210" width="250" height="90"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Kbb-mO-ybW">
+                                        <rect key="frame" x="0.0" y="200" width="250" height="80"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yjS-rb-ifd">
-                                                <rect key="frame" x="0.0" y="0.0" width="250" height="45"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="45" id="d4t-i4-qUq"/>
-                                                </constraints>
-                                                <color key="tintColor" systemColor="systemBlueColor"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="통화2 선택">
-                                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                    <color key="baseBackgroundColor" systemColor="systemBlueColor"/>
-                                                </buttonConfiguration>
-                                                <connections>
-                                                    <action selector="currency2ButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7kR-He-jnU"/>
-                                                </connections>
-                                            </button>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="금액" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nEW-mS-NHb">
-                                                <rect key="frame" x="0.0" y="45" width="250" height="45"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="45" id="Q0b-9T-8d1"/>
-                                                </constraints>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="통화 종류 선택" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vKI-5M-qZG" userLabel="Currency2 Type">
+                                                <rect key="frame" x="0.0" y="0.0" width="250" height="40"/>
+                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="금액 입력" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nEW-mS-NHb">
+                                                <rect key="frame" x="0.0" y="40" width="250" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                                                 <connections>
-                                                    <action selector="currency2TextFieldPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VJe-Ir-tHZ"/>
+                                                    <action selector="currency2PricePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="w0r-Br-Bvs"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="Ulx-gH-68u"/>
+                                    <constraint firstAttribute="height" constant="280" id="Ulx-gH-68u"/>
                                     <constraint firstAttribute="width" constant="250" id="rHG-ra-xfR"/>
                                 </constraints>
                             </stackView>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l2t-gz-bmb" userLabel="Currency1 Picker">
-                                <rect key="frame" x="47" y="657" width="320" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="QdR-2c-yfr"/>
-                                </constraints>
-                            </pickerView>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ekS-cd-ewP" userLabel="Currency2 Picker">
-                                <rect key="frame" x="47" y="657" width="320" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="7dl-rA-69B"/>
-                                </constraints>
-                            </pickerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ekS-cd-ewP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="U32-Yd-uZw"/>
+                            <constraint firstItem="hI2-b3-7fO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PEY-SN-eym"/>
                             <constraint firstItem="wjP-3z-go5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WsJ-kg-U51"/>
+                            <constraint firstItem="wjP-3z-go5" firstAttribute="top" secondItem="hI2-b3-7fO" secondAttribute="bottom" constant="50" id="Yer-Um-M9Y"/>
                             <constraint firstItem="y5Z-5l-qQk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YmM-ef-pZ0"/>
-                            <constraint firstItem="l2t-gz-bmb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="acY-Np-4Zi"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ekS-cd-ewP" secondAttribute="bottom" constant="5" id="gHH-aE-BEo"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="l2t-gz-bmb" secondAttribute="bottom" constant="5" id="q7S-4G-tE1"/>
-                            <constraint firstItem="wjP-3z-go5" firstAttribute="top" secondItem="y5Z-5l-qQk" secondAttribute="bottom" constant="70" id="rvH-eO-7Ru"/>
+                            <constraint firstItem="hI2-b3-7fO" firstAttribute="top" secondItem="y5Z-5l-qQk" secondAttribute="bottom" constant="70" id="eOD-3W-bSk"/>
                             <constraint firstItem="y5Z-5l-qQk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="sDf-Il-rfk"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="currency1Button" destination="Cf5-UL-bO1" id="Bhv-o9-dcx"/>
-                        <outlet property="currency1Picker" destination="l2t-gz-bmb" id="xeA-hs-2K0"/>
-                        <outlet property="currency1Price" destination="iWd-xe-bYG" id="8bf-4R-J1K"/>
-                        <outlet property="currency2Button" destination="yjS-rb-ifd" id="n3S-8J-0Bo"/>
-                        <outlet property="currency2Picker" destination="ekS-cd-ewP" id="ZTD-u6-7g8"/>
+                        <outlet property="currency1Price" destination="iWd-xe-bYG" id="5hk-Um-PGZ"/>
+                        <outlet property="currency1Type" destination="mOu-S3-y5j" id="WBz-a6-b7g"/>
                         <outlet property="currency2Price" destination="nEW-mS-NHb" id="uZu-0d-qH7"/>
+                        <outlet property="currency2Type" destination="vKI-5M-qZG" id="KYf-Wf-qTg"/>
+                        <outlet property="currencyDate" destination="8RP-MO-OdF" id="Fmf-pE-qZB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
