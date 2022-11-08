@@ -19,8 +19,6 @@ class ViewController: UIViewController {
     let currency1Picker: UIPickerView! = UIPickerView()
     let currency2Picker: UIPickerView! = UIPickerView()
     let toolbar: UIToolbar! = UIToolbar()
-    let toolbarCloseButton = UIBarButtonItem(
-        barButtonSystemItem: .close, target: nil, action: #selector(pickerClose))
     let toolbarDoneButton = UIBarButtonItem(
         barButtonSystemItem: .done, target: nil, action: #selector(pickerDone))
     let toolbarFlexibleSpace = UIBarButtonItem(
@@ -42,36 +40,45 @@ class ViewController: UIViewController {
      
         toolbar.sizeToFit()
         toolbar.frame = CGRect(x: 0, y: 0, width: 0, height: 40)
-        toolbar.setItems([toolbarCloseButton, toolbarFlexibleSpace, toolbarDoneButton], animated: true)
+        toolbar.setItems([toolbarFlexibleSpace, toolbarDoneButton], animated: true)
         
         currencyDate.inputAccessoryView = toolbar
         currencyDatePicker.datePickerMode = .date
         currencyDatePicker.preferredDatePickerStyle = .wheels
         currencyDatePicker.addTarget(self, action: #selector(datePickerDone(_:)), for: .valueChanged)
-        
+        currencyDatePicker.locale = Locale(identifier: "ko_KR")
         currency1Type.inputAccessoryView = toolbar
         currency2Type.inputAccessoryView = toolbar
 
-        // default: 1번은 달러, 2번은 원
+        // textfield 및 picker의 기본값 설정: 통화 1번은 달러, 2번은 원
+        let todayDateFormatter = DateFormatter()
+        todayDateFormatter.dateFormat = "yyyy년 MM월 dd일 (E)"
+        todayDateFormatter.locale = Locale(identifier: "ko_KR")
+        currencyDate.text = todayDateFormatter.string(from: Date())
+        currency1Type.text = exchangeManager.currencyArray[22]
+        currency2Type.text = exchangeManager.currencyArray[13]
         currency1Picker.selectRow(22, inComponent: 0, animated: true)
         currency2Picker.selectRow(13, inComponent: 0, animated: true)
+
     }
     
+    // 통화 및 날짜 선택 picker의 키보드 Close 버튼
     @objc func pickerClose() {
         self.view.endEditing(true)
     }
     
+    // 통화 선택 picker의 키보드 Done 버튼
     @objc func pickerDone() {
-        
         self.view.endEditing(true)
     }
     
+    // 날짜 선택 picker의 키보드 Done 버튼
     @objc func datePickerDone(_ sender: UIDatePicker) {
-        let nowDate = sender.date
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
-        let dateString = dateFormatter.string(from: nowDate)
-        currencyDate.text = dateString
+        let pickedDate = sender.date
+        let pickedDateFormatter = DateFormatter()
+        pickedDateFormatter.dateFormat = "yyyy년 MM월 dd일 (E)"
+        pickedDateFormatter.locale = Locale(identifier: "ko_KR")
+        currencyDate.text = pickedDateFormatter.string(from: pickedDate)
 //        self.view.endEditing(true)
     }
     
