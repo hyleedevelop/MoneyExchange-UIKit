@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     
     var exchangeRateManager = ExchangeRateManager()
     
+    var selectedRowNum: Int = 0
     var dateString: String = ""
     var currency1TypeString: String = ""
     var currency2TypeString: String = ""
@@ -62,7 +63,8 @@ class ViewController: UIViewController {
         todayDateFormatter.dateFormat = "yyyy년 MM월 dd일 (E)"
         todayDateFormatter.locale = Locale(identifier: "ko_KR")
         currencyDate.text = todayDateFormatter.string(from: Date())
-        currency1Type.text = exchangeRateManager.currencyArray[22]
+        //currency1Type.text = exchangeRateManager.currencyArray[22]
+        currency1Type.text = "통화 선택"
         currency2Type.text = exchangeRateManager.currencyArray[13]
         currency1Picker.selectRow(22, inComponent: 0, animated: true)
         currency2Picker.selectRow(13, inComponent: 0, animated: true)
@@ -100,7 +102,6 @@ class ViewController: UIViewController {
     }
     
     @IBAction func currency1TypePressed(_ sender: UITextField) {
-        
     }
     
     @IBAction func currency2TypePressed(_ sender: UITextField) {
@@ -108,19 +109,17 @@ class ViewController: UIViewController {
     }
     
     @IBAction func currency1PricePressed(_ sender: UITextField) {
-        
     }
     
     @IBAction func currency2PricePressed(_ sender: UITextField) {
-        
         currency2Price.endEditing(true)
     }
     
+    // 조회하기 버튼 클릭 시
     @IBAction func calculateButtonPressed(_ sender: UIButton) {
         if currency1Type.text != "" && currency2Type.text != "" &&
            currency1Price.text != "" {
             exchangeRateManager.getExchangeRate(dateForAPI: self.dateString)
-            
         } else {
             print("ERROR: 통화1, 금액1, 통화2를 모두 입력해주세요")
         }
@@ -131,12 +130,16 @@ class ViewController: UIViewController {
 
 //MARK: - ExchangeManagerDelegate
 extension ViewController: ExchangeManagerDelegate {
-    func didUpdateCurrency(price1: String, price2: String) {
+    func didUpdateCurrency(price: String) {
         DispatchQueue.main.async {
-            print(price1)
-            print(price2)
-            self.currency1Price.text = price1
-            self.currency2Price.text = price2
+            print(price)  // 1392.43
+            let priceDouble: Double = Double(price) ?? 0
+            print(priceDouble)  // 0.0
+            let inputPrice = Double(self.currency1Price.text!)
+            print(inputPrice!)  // 10.0
+            let result = Double(price)! * inputPrice!
+            print(result)  // Fatal error: Unexpectedly found nil while unwrapping an Optional value
+            self.currency2Price.text = String(format: "%.2f", result)
         }
     }
     
@@ -196,6 +199,7 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.selectedRowNum = row
         let selectedCurrency = exchangeRateManager.currencyArray[row]
         
         if pickerView == currency1Picker {
