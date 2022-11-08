@@ -7,18 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		079D61672918A55E00E536B7 /* ExchangeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079D61662918A55E00E536B7 /* ExchangeData.swift */; };
+		079D61672918A55E00E536B7 /* ExchangeRateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079D61662918A55E00E536B7 /* ExchangeRateData.swift */; };
 		07CB39262917FAC90010D152 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CB39252917FAC90010D152 /* AppDelegate.swift */; };
 		07CB39282917FAC90010D152 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CB39272917FAC90010D152 /* SceneDelegate.swift */; };
 		07CB392A2917FAC90010D152 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CB39292917FAC90010D152 /* ViewController.swift */; };
 		07CB392D2917FAC90010D152 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07CB392B2917FAC90010D152 /* Main.storyboard */; };
 		07CB392F2917FACA0010D152 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07CB392E2917FACA0010D152 /* Assets.xcassets */; };
 		07CB39322917FACA0010D152 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07CB39302917FACA0010D152 /* LaunchScreen.storyboard */; };
-		07CB393B2917FB050010D152 /* ExchangeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CB393A2917FB050010D152 /* ExchangeManager.swift */; };
+		07CB393B2917FB050010D152 /* ExchangeRateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CB393A2917FB050010D152 /* ExchangeRateManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		079D61662918A55E00E536B7 /* ExchangeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeData.swift; sourceTree = "<group>"; };
+		079D61662918A55E00E536B7 /* ExchangeRateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateData.swift; sourceTree = "<group>"; };
 		07CB39222917FAC90010D152 /* MoneyExchange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyExchange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07CB39252917FAC90010D152 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07CB39272917FAC90010D152 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -27,7 +27,7 @@
 		07CB392E2917FACA0010D152 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07CB39312917FACA0010D152 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07CB39332917FACA0010D152 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		07CB393A2917FB050010D152 /* ExchangeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeManager.swift; sourceTree = "<group>"; };
+		07CB393A2917FB050010D152 /* ExchangeRateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +82,8 @@
 		07CB393C2917FB0E0010D152 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				07CB393A2917FB050010D152 /* ExchangeManager.swift */,
-				079D61662918A55E00E536B7 /* ExchangeData.swift */,
+				07CB393A2917FB050010D152 /* ExchangeRateManager.swift */,
+				079D61662918A55E00E536B7 /* ExchangeRateData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -170,9 +170,9 @@
 			files = (
 				07CB392A2917FAC90010D152 /* ViewController.swift in Sources */,
 				07CB39262917FAC90010D152 /* AppDelegate.swift in Sources */,
-				07CB393B2917FB050010D152 /* ExchangeManager.swift in Sources */,
+				07CB393B2917FB050010D152 /* ExchangeRateManager.swift in Sources */,
 				07CB39282917FAC90010D152 /* SceneDelegate.swift in Sources */,
-				079D61672918A55E00E536B7 /* ExchangeData.swift in Sources */,
+				079D61672918A55E00E536B7 /* ExchangeRateData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

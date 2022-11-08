@@ -24,7 +24,11 @@ class ViewController: UIViewController {
     let toolbarFlexibleSpace = UIBarButtonItem(
         barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     
-    var exchangeManager = ExchangeManager()
+    var exchangeRateManager = ExchangeRateManager()
+    
+    var dateString: String = ""
+    var currency1TypeString: String = ""
+    var currency2TypeString: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +37,7 @@ class ViewController: UIViewController {
         currency2Picker.delegate = self
         currency1Picker.dataSource = self
         currency2Picker.dataSource = self
+        exchangeRateManager.delegate = self
         
         currencyDate.inputView = currencyDatePicker
         currency1Type.inputView = currency1Picker
@@ -42,6 +47,8 @@ class ViewController: UIViewController {
         toolbar.frame = CGRect(x: 0, y: 0, width: 0, height: 40)
         toolbar.setItems([toolbarFlexibleSpace, toolbarDoneButton], animated: true)
         
+        currency1Price.inputAccessoryView = toolbar
+        currency2Price.inputAccessoryView = toolbar
         currencyDate.inputAccessoryView = toolbar
         currencyDatePicker.datePickerMode = .date
         currencyDatePicker.preferredDatePickerStyle = .wheels
@@ -55,10 +62,12 @@ class ViewController: UIViewController {
         todayDateFormatter.dateFormat = "yyyy년 MM월 dd일 (E)"
         todayDateFormatter.locale = Locale(identifier: "ko_KR")
         currencyDate.text = todayDateFormatter.string(from: Date())
-        currency1Type.text = exchangeManager.currencyArray[22]
-        currency2Type.text = exchangeManager.currencyArray[13]
+        currency1Type.text = exchangeRateManager.currencyArray[22]
+        currency2Type.text = exchangeRateManager.currencyArray[13]
         currency1Picker.selectRow(22, inComponent: 0, animated: true)
         currency2Picker.selectRow(13, inComponent: 0, animated: true)
+        
+        //setKeyboardObserver()
 
     }
     
@@ -75,21 +84,64 @@ class ViewController: UIViewController {
     // 날짜 선택 picker의 키보드 Done 버튼
     @objc func datePickerDone(_ sender: UIDatePicker) {
         let pickedDate = sender.date
-        let pickedDateFormatter = DateFormatter()
-        pickedDateFormatter.dateFormat = "yyyy년 MM월 dd일 (E)"
-        pickedDateFormatter.locale = Locale(identifier: "ko_KR")
-        currencyDate.text = pickedDateFormatter.string(from: pickedDate)
-//        self.view.endEditing(true)
+
+        let pickedDateFormatter1 = DateFormatter()
+        pickedDateFormatter1.dateFormat = "yyyy년 MM월 dd일 (E)"
+        pickedDateFormatter1.locale = Locale(identifier: "ko_KR")
+        currencyDate.text = pickedDateFormatter1.string(from: pickedDate)
+
+        let pickedDateFormatter2 = DateFormatter()
+        pickedDateFormatter2.dateFormat = "yyyyMMdd"
+        self.dateString = pickedDateFormatter2.string(from: pickedDate)
+    }
+    
+    @IBAction func tapBackgroundView(_ sender: Any) {
+        view.endEditing(true)
+    }
+    
+    @IBAction func currency1TypePressed(_ sender: UITextField) {
+        
+    }
+    
+    @IBAction func currency2TypePressed(_ sender: UITextField) {
+        currency2Type.endEditing(true)
     }
     
     @IBAction func currency1PricePressed(_ sender: UITextField) {
-        currency1Picker.isHidden = true
-        currency2Picker.isHidden = true
+        
     }
     
     @IBAction func currency2PricePressed(_ sender: UITextField) {
-        currency1Picker.isHidden = true
-        currency2Picker.isHidden = true
+        
+        currency2Price.endEditing(true)
+    }
+    
+    @IBAction func calculateButtonPressed(_ sender: UIButton) {
+        if currency1Type.text != "" && currency2Type.text != "" &&
+           currency1Price.text != "" {
+            exchangeRateManager.getExchangeRate(dateForAPI: self.dateString)
+            
+        } else {
+            print("ERROR: 통화1, 금액1, 통화2를 모두 입력해주세요")
+        }
+    }
+    
+}
+
+
+//MARK: - ExchangeManagerDelegate
+extension ViewController: ExchangeManagerDelegate {
+    func didUpdateCurrency(price1: String, price2: String) {
+        DispatchQueue.main.async {
+            print(price1)
+            print(price2)
+            self.currency1Price.text = price1
+            self.currency2Price.text = price2
+        }
+    }
+    
+    func didFailWithError(error: Error) {
+        print(error)
     }
     
 }
@@ -132,11 +184,11 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return exchangeManager.currencyArray.count
+        return exchangeRateManager.currencyArray.count
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return exchangeManager.currencyArray[row]
+        return exchangeRateManager.currencyArray[row]
     }
 
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
@@ -144,12 +196,14 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selectedCurrency = exchangeManager.currencyArray[row]
+        let selectedCurrency = exchangeRateManager.currencyArray[row]
         
         if pickerView == currency1Picker {
             currency1Type.text = selectedCurrency
+            self.currency1TypeString = selectedCurrency
         } else if pickerView == currency2Picker {
             currency2Type.text = selectedCurrency
+            self.currency2TypeString = selectedCurrency
         }
 
     }
