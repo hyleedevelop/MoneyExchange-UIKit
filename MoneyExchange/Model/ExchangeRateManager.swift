@@ -14,7 +14,6 @@ protocol ExchangeManagerDelegate {
 }
 
 struct ExchangeRateManager {
-
     var row: Int
     
     init(rowNum: Int) {
@@ -25,10 +24,9 @@ struct ExchangeRateManager {
     
     let baseURL = "https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?data=AP01"
     let myAPIKey = "U7dr2LfO8WXzzSxdd1GDaEGpvUZcrqW9"
-
     let currencyArray = ["아랍에미리트 (디르함)", "호주 (달러)", "바레인 (디나르)", "브루나이 (달러)", "캐나다 (달러)", "스위스 (프랑)", "중국 (위안화)", "덴마크 (크로네)", "유럽 (유로)", "영국 (파운드)", "홍콩 (달러)", "인도네시아 (루피아)", "일본 (엔)", "한국 (원)", "쿠웨이트 (디나르)", "말레이시아 (링기트)", "노르웨이 (크로네)", "뉴질랜드 (달러)", "사우디 (리얄)", "스웨덴 (크로나)", "싱가포르 (달러)", "태국 (바트)", "미국 (달러)"]
     
-    func getExchangeRate(dateForAPI: String) {
+    func fetchExchangeRate(dateForAPI: String) {
         print(dateForAPI)
         let urlString = "\(baseURL)&searchdate=\(dateForAPI)&authkey=\(myAPIKey)"
         performRequest(with: urlString)
@@ -47,7 +45,7 @@ struct ExchangeRateManager {
                     return
                 }
                 
-                // data 내용 체크
+                // data 내용을 확인하기 위한 코드
                 //let dataAsString = String(data: data!, encoding: .utf8)
                 //print(dataAsString!)
                 
@@ -56,13 +54,7 @@ struct ExchangeRateManager {
                 if let safeData = data {
                     // closure 내부에서는 self를 생략하지 말아야 함
                     if let currentPrice = self.parseJSON(safeData) {
-                        print("# price after parsing: \(currentPrice)")
-//                        let currentPriceDouble = Double(currentPrice)
-//                        let currentPriceString = String(format: "%.2f", currentPriceDouble!)
-//                        print("# price(format) after parsing: \(currentPriceString)")
-
-//                        self.delegate?.didUpdateCurrency(price: currentPriceString)
-                        // delegate 송신 (to: WeatherViewController.swift)
+                        // ViewController의 didUpdateCurrency() 작동시키기
                         self.delegate?.didUpdateCurrency(price: currentPrice)
                     }
                 }
@@ -81,7 +73,6 @@ struct ExchangeRateManager {
 //                let row = self.VC.currency1Picker.selectedRow(inComponent: 0)
                 let ttbString = decodedData[row].ttb
                 let priceData = ttbString.components(separatedBy: [","]).joined()  // 콤마 제거
-                print("# price decodded: \(priceData)")
                 return priceData
             } else {
                 return "-1"

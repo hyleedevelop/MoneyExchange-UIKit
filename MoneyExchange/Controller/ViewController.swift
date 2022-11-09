@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var currency2Type: UITextField!
     @IBOutlet weak var currency1Price: UITextField!
     @IBOutlet weak var currency2Price: UITextField!
+    @IBOutlet weak var fetchButton: UIButton!
     
     let currencyDatePicker: UIDatePicker! = UIDatePicker()
     let currency1Picker: UIPickerView! = UIPickerView()
@@ -58,17 +59,31 @@ class ViewController: UIViewController {
         currency1Type.inputAccessoryView = toolbar
         currency2Type.inputAccessoryView = toolbar
 
-        // textfield 및 picker의 기본값 설정: 통화 1번은 달러, 2번은 원
+        makeDefaultSetting()
+    }
+        
+    func makeDefaultSetting() {
+        // textfield 및 picker의 기본값 설정: 통화 1번은 달러, 2번은 원(고정)
         let todayDateFormatter = DateFormatter()
         todayDateFormatter.dateFormat = "yyyy년 MM월 dd일 (E)"
         todayDateFormatter.locale = Locale(identifier: "ko_KR")
         currencyDate.text = todayDateFormatter.string(from: Date())
-        //currency1Type.text = exchangeRateManager.currencyArray[22]
-        currency1Type.text = "통화 선택"
+        currency1Type.text = exchangeRateManager.currencyArray[22]
         currency2Type.text = exchangeRateManager.currencyArray[13]
+        currency2Price.text = "?"
         currency1Picker.selectRow(22, inComponent: 0, animated: true)
         currency2Picker.selectRow(13, inComponent: 0, animated: true)
-        //print(currency1Picker.selectedRow(inComponent: 0))
+    }
+    
+    func makePopUpMessage(msg: String) {
+        // 팝업으로 보여주고자 하는 메세지 설정
+        let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
+        
+        // 현재 ViewController에서 팝업 실행
+        self.present(alert, animated: true, completion: nil)
+        
+        // 팝업이 withTimeInterval(초)만큼 유지되다가 사라짐
+        Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false, block: { _ in alert.dismiss(animated: true, completion: nil)})
     }
     
     // 통화 및 날짜 선택 picker의 키보드 Close 버튼
@@ -113,14 +128,21 @@ class ViewController: UIViewController {
         currency2Price.endEditing(true)
     }
     
-    // 조회하기 버튼 클릭 시
-    @IBAction func calculateButtonPressed(_ sender: UIButton) {
-        if currency1Type.text != "" && currency2Type.text != "" &&
-           currency1Price.text != "" {
-            exchangeRateManager.getExchangeRate(dateForAPI: self.dateString)
+    // 조회 버튼을 클릭했을 때
+    @IBAction func fetchButtonPressed(_ sender: UIButton) {
+        if currency1Type.text != "" && currency1Price.text != "" {
+            exchangeRateManager.row = currency1Picker.selectedRow(inComponent: 0)
+            exchangeRateManager.fetchExchangeRate(dateForAPI: self.dateString)
+            makePopUpMessage(msg: "조회 완료")
         } else {
-            print("ERROR: 통화1, 금액1, 통화2를 모두 입력해주세요")
+            print("ERROR: 통화를 선택하고 금액을 입력해주세요")
         }
+    }
+    
+    // 초기화 버튼을 클릭했을 때
+    @IBAction func initializeButtonPressed(_ sender: UIButton) {
+        makeDefaultSetting()
+        makePopUpMessage(msg: "초기화 완료")
     }
     
 }
@@ -130,30 +152,23 @@ class ViewController: UIViewController {
 extension ViewController: ExchangeManagerDelegate {
     func didUpdateCurrency(price: String) {
         DispatchQueue.main.async {
-            print(price)  // 1392.43
-            let result = Double(price)! * Double(self.currency1Price.text!)!
-            print(result)
-            self.currency2Price.text = String(format: "%.2f", result)
+            if price == "-1" {
+                self.currency2Price.text = "환율 자료 없음"
+            } else {
+                let result = round(Double(price)! * Double(self.currency1Price.text!)!)
+                self.currency2Price.text = String(Int(result))
+            }
         }
     }
     
     func didFailWithError(error: Error) {
         print(error)
     }
-    
-    func numberFormatter(number: Int) -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        
-        return numberFormatter.string(from: NSNumber(value: number))!
-    }
-    
 }
 
 
 //MARK: - UITextFieldDelegate
 extension ViewController: UITextFieldDelegate {
-    
     // TextField에서 사용자가 키보드 상의 return을 눌렀을 때 구현할 내용
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         currency1Price.endEditing(true)  // 입력이 끝났으니 키보드를 숨겨라
@@ -176,13 +191,11 @@ extension ViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         //exchangeManager.???
     }
-
 }
 
 
 //MARK: - UIPickerView Datasource & Delegate
 extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
-
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -212,5 +225,4 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         }
 
     }
-
 }

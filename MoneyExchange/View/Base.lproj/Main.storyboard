@@ -19,54 +19,55 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="환율 조회" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5Z-5l-qQk" userLabel="Title">
                                 <rect key="frame" x="137.5" y="78" width="139.5" height="45.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="38"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="hI2-b3-7fO">
-                                <rect key="frame" x="67" y="173.5" width="280" height="50"/>
+                                <rect key="frame" x="82" y="173.5" width="250" height="40"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기준일:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mhs-z7-aMI">
-                                        <rect key="frame" x="0.0" y="0.0" width="70" height="50"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mhs-z7-aMI">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="70" id="BwN-hh-Pgp"/>
+                                            <constraint firstAttribute="width" constant="50" id="BwN-hh-Pgp"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="날짜를 선택하세요" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8RP-MO-OdF" userLabel="Date">
-                                        <rect key="frame" x="70" y="0.0" width="210" height="50"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="날짜를 선택하세요" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="8RP-MO-OdF" userLabel="Date">
+                                        <rect key="frame" x="50" y="0.0" width="200" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="210" id="62a-b0-fsm"/>
-                                            <constraint firstAttribute="height" constant="50" id="f1q-dH-RKf"/>
+                                            <constraint firstAttribute="width" constant="200" id="62a-b0-fsm"/>
+                                            <constraint firstAttribute="height" constant="40" id="f1q-dH-RKf"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="BUV-bP-6Fw"/>
+                                    <constraint firstAttribute="width" constant="250" id="BUV-bP-6Fw"/>
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wjP-3z-go5">
-                                <rect key="frame" x="82" y="273.5" width="250" height="251"/>
+                                <rect key="frame" x="97" y="263.5" width="220" height="251"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="jLZ-6M-XlD">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="77"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="220" height="77"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="통화 선택" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mOu-S3-y5j" userLabel="Currency1 Type">
-                                                <rect key="frame" x="0.0" y="0.0" width="250" height="38.5"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="통화 선택" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mOu-S3-y5j" userLabel="Currency1 Type">
+                                                <rect key="frame" x="0.0" y="0.0" width="220" height="38.5"/>
                                                 <color key="backgroundColor" systemColor="systemRedColor"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <action selector="currency1TypePressed:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="Fcg-jD-7Wi"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="금액 입력" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iWd-xe-bYG" userLabel="Currency1 Price">
-                                                <rect key="frame" x="0.0" y="38.5" width="250" height="38.5"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="금액 입력" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iWd-xe-bYG" userLabel="Currency1 Price">
+                                                <rect key="frame" x="0.0" y="38.5" width="220" height="38.5"/>
+                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                                                 <connections>
                                                     <action selector="currency1PricePressed:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="JUq-aq-wbK"/>
@@ -75,7 +76,7 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="↓" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jj6-Gb-L68">
-                                        <rect key="frame" x="0.0" y="87" width="250" height="77"/>
+                                        <rect key="frame" x="0.0" y="87" width="220" height="77"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="77" id="ebn-re-INk"/>
                                         </constraints>
@@ -84,21 +85,21 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Kbb-mO-ybW">
-                                        <rect key="frame" x="0.0" y="174" width="250" height="77"/>
+                                        <rect key="frame" x="0.0" y="174" width="220" height="77"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="통화 선택" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vKI-5M-qZG" userLabel="Currency2 Type">
-                                                <rect key="frame" x="0.0" y="0.0" width="250" height="38.5"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="통화 선택" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vKI-5M-qZG" userLabel="Currency2 Type">
+                                                <rect key="frame" x="0.0" y="0.0" width="220" height="38.5"/>
                                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <action selector="currency2TypePressed:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="KTZ-xF-c9x"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nEW-mS-NHb">
-                                                <rect key="frame" x="0.0" y="38.5" width="250" height="38.5"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nEW-mS-NHb">
+                                                <rect key="frame" x="0.0" y="38.5" width="220" height="38.5"/>
+                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                                                 <connections>
                                                     <action selector="currency2PricePressed:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="8ci-Px-wOw"/>
@@ -108,38 +109,56 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="rHG-ra-xfR"/>
+                                    <constraint firstAttribute="width" constant="220" id="rHG-ra-xfR"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMv-Sw-KPC">
-                                <rect key="frame" x="147" y="574.5" width="120" height="50"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="W5D-lk-rob">
+                                <rect key="frame" x="107" y="770.5" width="200" height="41.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMv-Sw-KPC">
+                                        <rect key="frame" x="0.0" y="0.0" width="85" height="41.5"/>
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="조회">
+                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="23"/>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="fetchButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7oS-pk-kwe"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djV-1b-iIq" userLabel="Initialize Button">
+                                        <rect key="frame" x="115" y="0.0" width="85" height="41.5"/>
+                                        <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="초기화">
+                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="23"/>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="baseBackgroundColor" systemColor="systemPurpleColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="initializeButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LUs-qS-5sx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="l8H-Cj-H82"/>
-                                    <constraint firstAttribute="width" constant="120" id="x9T-bY-5Yd"/>
+                                    <constraint firstAttribute="width" constant="200" id="hXH-Pb-Lkl"/>
                                 </constraints>
-                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="조회하기">
-                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
-                                    <color key="baseBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="calculateButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oRO-Dr-lfr"/>
-                                </connections>
-                            </button>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="RMv-Sw-KPC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0bA-LQ-I01"/>
-                            <constraint firstItem="RMv-Sw-KPC" firstAttribute="top" secondItem="wjP-3z-go5" secondAttribute="bottom" constant="50" id="ATP-oa-nZh"/>
+                            <constraint firstItem="W5D-lk-rob" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LQ7-Pw-w8c"/>
                             <constraint firstItem="hI2-b3-7fO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PEY-SN-eym"/>
                             <constraint firstItem="wjP-3z-go5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WsJ-kg-U51"/>
                             <constraint firstItem="wjP-3z-go5" firstAttribute="top" secondItem="hI2-b3-7fO" secondAttribute="bottom" constant="50" id="Yer-Um-M9Y"/>
                             <constraint firstItem="y5Z-5l-qQk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YmM-ef-pZ0"/>
                             <constraint firstItem="hI2-b3-7fO" firstAttribute="top" secondItem="y5Z-5l-qQk" secondAttribute="bottom" constant="50" id="eOD-3W-bSk"/>
                             <constraint firstItem="y5Z-5l-qQk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="sDf-Il-rfk"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="W5D-lk-rob" secondAttribute="bottom" constant="50" id="xNJ-sP-MQI"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="l0I-78-aL4" appends="YES" id="Cb4-ut-HQG"/>
@@ -151,6 +170,7 @@
                         <outlet property="currency2Price" destination="nEW-mS-NHb" id="uZu-0d-qH7"/>
                         <outlet property="currency2Type" destination="vKI-5M-qZG" id="KYf-Wf-qTg"/>
                         <outlet property="currencyDate" destination="8RP-MO-OdF" id="Fmf-pE-qZB"/>
+                        <outlet property="fetchButton" destination="RMv-Sw-KPC" id="mz4-6L-VFx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -164,11 +184,17 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
