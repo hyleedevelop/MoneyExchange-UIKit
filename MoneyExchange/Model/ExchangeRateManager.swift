@@ -14,6 +14,13 @@ protocol ExchangeManagerDelegate {
 }
 
 struct ExchangeRateManager {
+
+    var row: Int
+    
+    init(rowNum: Int) {
+        row = rowNum
+    }
+    
     var delegate: ExchangeManagerDelegate?
     
     let baseURL = "https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?data=AP01"
@@ -41,8 +48,8 @@ struct ExchangeRateManager {
                 }
                 
                 // data 내용 체크
-                let dataAsString = String(data: data!, encoding: .utf8)
-                print(dataAsString!)
+                //let dataAsString = String(data: data!, encoding: .utf8)
+                //print(dataAsString!)
                 
                 // 데이터 가져오기 -> JSON 데이터를 parse하기 -> 변수에 값 업데이트하기
                 // 각 스텝이 성공하면 다음 스텝으로 넘어가는 식으로 코딩
@@ -68,17 +75,17 @@ struct ExchangeRateManager {
     
     func parseJSON(_ data: Data) -> String? {
         let decoder = JSONDecoder()
-
         do {
             let decodedData = try decoder.decode(ERData.self, from: data)
             if decodedData.count != 0 {
-                let priceData = decodedData[22].ttb
+//                let row = self.VC.currency1Picker.selectedRow(inComponent: 0)
+                let ttbString = decodedData[row].ttb
+                let priceData = ttbString.components(separatedBy: [","]).joined()  // 콤마 제거
                 print("# price decodded: \(priceData)")
                 return priceData
             } else {
-                return "-999"
+                return "-1"
             }
-            
         } catch {
             print("ERROR: decoding")
             return nil

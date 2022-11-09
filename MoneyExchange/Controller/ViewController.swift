@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     let toolbarFlexibleSpace = UIBarButtonItem(
         barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     
-    var exchangeRateManager = ExchangeRateManager()
+    var exchangeRateManager = ExchangeRateManager(rowNum: 22)
     
     var selectedRowNum: Int = 0
     var dateString: String = ""
@@ -68,9 +68,7 @@ class ViewController: UIViewController {
         currency2Type.text = exchangeRateManager.currencyArray[13]
         currency1Picker.selectRow(22, inComponent: 0, animated: true)
         currency2Picker.selectRow(13, inComponent: 0, animated: true)
-        
-        //setKeyboardObserver()
-
+        //print(currency1Picker.selectedRow(inComponent: 0))
     }
     
     // 통화 및 날짜 선택 picker의 키보드 Close 버튼
@@ -133,18 +131,21 @@ extension ViewController: ExchangeManagerDelegate {
     func didUpdateCurrency(price: String) {
         DispatchQueue.main.async {
             print(price)  // 1392.43
-            let priceDouble: Double = Double(price) ?? 0
-            print(priceDouble)  // 0.0
-            let inputPrice = Double(self.currency1Price.text!)
-            print(inputPrice!)  // 10.0
-            let result = Double(price)! * inputPrice!
-            print(result)  // Fatal error: Unexpectedly found nil while unwrapping an Optional value
+            let result = Double(price)! * Double(self.currency1Price.text!)!
+            print(result)
             self.currency2Price.text = String(format: "%.2f", result)
         }
     }
     
     func didFailWithError(error: Error) {
         print(error)
+    }
+    
+    func numberFormatter(number: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        
+        return numberFormatter.string(from: NSNumber(value: number))!
     }
     
 }
