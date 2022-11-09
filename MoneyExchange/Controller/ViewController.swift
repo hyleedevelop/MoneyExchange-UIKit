@@ -14,7 +14,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var currency2Type: UITextField!
     @IBOutlet weak var currency1Price: UITextField!
     @IBOutlet weak var currency2Price: UITextField!
-    @IBOutlet weak var fetchButton: UIButton!
     
     let currencyDatePicker: UIDatePicker! = UIDatePicker()
     let currency1Picker: UIPickerView! = UIPickerView()

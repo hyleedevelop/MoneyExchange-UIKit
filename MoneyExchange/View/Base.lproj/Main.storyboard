@@ -170,7 +170,6 @@
                         <outlet property="currency2Price" destination="nEW-mS-NHb" id="uZu-0d-qH7"/>
                         <outlet property="currency2Type" destination="vKI-5M-qZG" id="KYf-Wf-qTg"/>
                         <outlet property="currencyDate" destination="8RP-MO-OdF" id="Fmf-pE-qZB"/>
-                        <outlet property="fetchButton" destination="RMv-Sw-KPC" id="mz4-6L-VFx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
