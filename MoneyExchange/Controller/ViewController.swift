@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var currencyDate: UITextField!
@@ -69,6 +70,7 @@ class ViewController: UIViewController {
         currencyDate.text = todayDateFormatter.string(from: Date())
         currency1Type.text = exchangeRateManager.currencyArray[22]
         currency2Type.text = exchangeRateManager.currencyArray[13]
+        currency1Price.text = ""
         currency2Price.text = "?"
         currency1Picker.selectRow(22, inComponent: 0, animated: true)
         currency2Picker.selectRow(13, inComponent: 0, animated: true)

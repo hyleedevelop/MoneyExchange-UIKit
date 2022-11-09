@@ -13,6 +13,7 @@ protocol ExchangeManagerDelegate {
     func didFailWithError(error: Error)
 }
 
+
 struct ExchangeRateManager {
     var row: Int
     
